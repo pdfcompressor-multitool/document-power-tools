@@ -6,6 +6,34 @@ import { Button } from "@/components/ui/button";
 import { Upload, Loader2, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+const SEOContent = () => (
+  <div className="mt-12 space-y-8 text-sm">
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Combine Multiple PDFs Into One Document
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Merge multiple PDF files into a single document for easier organization 
+        and sharing. Perfect for combining scanned pages, creating document packages, 
+        or consolidating reports.
+      </p>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Common Use Cases
+      </h2>
+      <ul className="text-muted-foreground space-y-2">
+        <li>• Combine multiple scanned pages into one document</li>
+        <li>• Merge contract pages from different sources</li>
+        <li>• Create document packages for submissions</li>
+        <li>• Consolidate monthly reports into annual documents</li>
+        <li>• Combine multiple invoices for records</li>
+      </ul>
+    </section>
+  </div>
+);
+
 const MergePDF = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [processing, setProcessing] = useState(false);
@@ -48,7 +76,7 @@ const MergePDF = () => {
       saveAs(blob, "merged.pdf");
       
       toast({
-        title: "PDFs Merged Successfully!",
+        title: "PDFs Merged",
         description: `Combined ${files.length} PDF files.`,
       });
       
@@ -67,10 +95,11 @@ const MergePDF = () => {
   return (
     <ToolLayout
       title="Merge PDF"
-      description="Combine multiple PDF documents into a single file"
+      description="Combine multiple PDF documents into a single file."
+      seoContent={<SEOContent />}
     >
       <div className="space-y-6">
-        <div className="border-2 border-dashed border-primary/30 rounded-xl p-8 text-center bg-card/50">
+        <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary/50 transition-colors bg-muted/30">
           <input
             type="file"
             accept=".pdf"
@@ -81,11 +110,11 @@ const MergePDF = () => {
           />
           <label htmlFor="pdf-upload" className="cursor-pointer">
             <div className="flex flex-col items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                <Upload className="w-8 h-8 text-primary" />
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+                <Upload className="w-7 h-7 text-primary" />
               </div>
               <div>
-                <p className="text-lg font-semibold mb-2">
+                <p className="text-base font-medium text-foreground mb-1">
                   Click to add PDF files
                 </p>
                 <p className="text-sm text-muted-foreground">
@@ -98,7 +127,7 @@ const MergePDF = () => {
 
         {files.length > 0 && (
           <div className="space-y-3">
-            <h3 className="font-semibold text-foreground">
+            <h3 className="font-medium text-foreground text-sm">
               Files to merge ({files.length}):
             </h3>
             {files.map((file, index) => (
@@ -122,11 +151,11 @@ const MergePDF = () => {
         <Button
           onClick={mergePDFs}
           disabled={files.length < 2 || processing}
-          className="w-full bg-primary hover:bg-primary-dark text-primary-foreground font-semibold py-6"
+          className="w-full"
         >
           {processing ? (
             <>
-              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
               Merging PDFs...
             </>
           ) : (

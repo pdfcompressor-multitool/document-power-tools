@@ -6,6 +6,34 @@ import FileUpload from "@/components/FileUpload";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+const SEOContent = () => (
+  <div className="mt-12 space-y-8 text-sm">
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Convert Photos to PDF for Document Submission
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Quickly convert JPG images to PDF format for document submissions. 
+        Perfect for converting scanned documents, photos of certificates, 
+        ID cards, and other images into universally accepted PDF format.
+      </p>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Common Use Cases
+      </h2>
+      <ul className="text-muted-foreground space-y-2">
+        <li>• Convert scanned documents to PDF for official submissions</li>
+        <li>• Create PDF from photos of certificates and diplomas</li>
+        <li>• Convert ID card photos to PDF format</li>
+        <li>• Create PDF documents from mobile phone photos</li>
+        <li>• Convert receipts and invoices to PDF for records</li>
+      </ul>
+    </section>
+  </div>
+);
+
 const JPGtoPDF = () => {
   const [processing, setProcessing] = useState(false);
   const { toast } = useToast();
@@ -40,7 +68,7 @@ const JPGtoPDF = () => {
       saveAs(blob, fileName);
       
       toast({
-        title: "Conversion Successful!",
+        title: "Conversion Complete",
         description: "Your image has been converted to PDF.",
       });
     } catch (error) {
@@ -57,7 +85,8 @@ const JPGtoPDF = () => {
   return (
     <ToolLayout
       title="JPG to PDF"
-      description="Convert your image files into a single PDF document"
+      description="Convert images to PDF format for document submissions and official forms."
+      seoContent={<SEOContent />}
     >
       <div className="space-y-6">
         <FileUpload
@@ -69,7 +98,7 @@ const JPGtoPDF = () => {
         {processing && (
           <div className="flex items-center justify-center gap-3 py-8">
             <Loader2 className="w-6 h-6 animate-spin text-primary" />
-            <p className="text-lg text-muted-foreground">Converting to PDF...</p>
+            <p className="text-muted-foreground">Converting to PDF...</p>
           </div>
         )}
       </div>

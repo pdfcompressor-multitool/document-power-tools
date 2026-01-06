@@ -1,73 +1,134 @@
-# Welcome to your Lovable project
+# DocFlow - Document Processing Platform
 
-## Project info
+A professional, browser-based document processing suite for PDF compression, conversion, and manipulation. All processing happens locally in your browser—no files are uploaded to external servers.
 
-**URL**: https://lovable.dev/projects/4c21d148-505c-4112-a66f-ed2c1b9a9451
+## Features
 
-## How can I edit this code?
+### PDF Tools
+- **PDF Compressor** — Reduce PDF file size with adjustable quality settings
+- **Compress to 200KB** — Target-size compression for government form uploads
+- **Compress to 100KB** — Maximum compression for strict file size limits
+- **Merge PDF** — Combine multiple PDF files into one document
+- **Split PDF** — Extract specific pages or ranges from PDFs
 
-There are several ways of editing your application.
+### Conversion Tools
+- **JPG to PDF** — Convert images to PDF documents
+- **PDF to JPG** — Extract PDF pages as high-quality images
+- **Word to PDF** — Convert DOCX documents to PDF format
+- **PDF to Word** — Extract text from PDFs to editable Word files
 
-**Use Lovable**
+### Image Tools
+- **Image Compressor** — Optimize JPG and PNG images with quality control
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4c21d148-505c-4112-a66f-ed2c1b9a9451) and start prompting.
+## Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+- **React 18** — Modern component-based UI
+- **TypeScript** — Type-safe development
+- **Vite** — Fast build tooling
+- **Tailwind CSS** — Utility-first styling
+- **shadcn/ui** — Accessible component library
+- **pdf-lib** — PDF manipulation
+- **pdfjs-dist** — PDF rendering and parsing
+- **jsPDF** — PDF generation
+- **mammoth** — Word document parsing
+- **docx** — Word document generation
 
-**Use your preferred IDE**
+## Local Development
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Setup
 
-Follow these steps:
+```bash
+# Clone the repository
+git clone <repository-url>
+cd docflow
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Install dependencies
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Build for Production
 
-**Use GitHub Codespaces**
+```bash
+# Create production build
+npm run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Preview production build
+npm run preview
+```
 
-## What technologies are used for this project?
+## Deployment
 
-This project is built with:
+### GitHub Pages
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. Update `vite.config.ts` with your repository name:
+```ts
+export default defineConfig({
+  base: '/<repository-name>/',
+  // ...
+})
+```
 
-## How can I deploy this project?
+2. Build the project:
+```bash
+npm run build
+```
 
-Simply open [Lovable](https://lovable.dev/projects/4c21d148-505c-4112-a66f-ed2c1b9a9451) and click on Share -> Publish.
+3. Deploy the `dist` folder to GitHub Pages using your preferred method (gh-pages, GitHub Actions, etc.)
 
-## Can I connect a custom domain to my Lovable project?
+### Static Hosting
 
-Yes, you can!
+The `dist` folder can be deployed to any static hosting provider:
+- Netlify
+- Vercel
+- Cloudflare Pages
+- AWS S3 + CloudFront
+- Any web server (nginx, Apache)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Project Structure
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```
+src/
+├── components/       # Reusable UI components
+│   ├── ui/          # shadcn/ui components
+│   ├── Header.tsx
+│   ├── Footer.tsx
+│   ├── ToolCard.tsx
+│   ├── ToolLayout.tsx
+│   └── FileUpload.tsx
+├── pages/           # Route pages
+│   ├── Index.tsx
+│   ├── PDFCompressor.tsx
+│   ├── CompressPDF200KB.tsx
+│   ├── CompressPDF100KB.tsx
+│   ├── JPGtoPDF.tsx
+│   ├── PDFtoJPG.tsx
+│   ├── ImageCompressor.tsx
+│   ├── MergePDF.tsx
+│   ├── SplitPDF.tsx
+│   ├── WordToPDF.tsx
+│   └── PDFtoWord.tsx
+├── hooks/           # Custom React hooks
+├── lib/             # Utility functions
+└── index.css        # Global styles and design tokens
+```
+
+## Security
+
+All document processing happens entirely in the browser. Files are never uploaded to external servers, ensuring complete privacy and data security.
+
+## License
+
+MIT License - See LICENSE file for details.
+
+---
+
+© 2026 DocFlow. All rights reserved.

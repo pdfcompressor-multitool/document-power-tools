@@ -9,6 +9,34 @@ import { useToast } from "@/hooks/use-toast";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
+const SEOContent = () => (
+  <div className="mt-12 space-y-8 text-sm">
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Extract Text from PDF to Editable Word Document
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Convert PDF documents to editable Microsoft Word format. This tool extracts 
+        text content from PDFs and creates a Word document that you can edit, 
+        format, and save.
+      </p>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Common Use Cases
+      </h2>
+      <ul className="text-muted-foreground space-y-2">
+        <li>• Extract text from PDF for editing</li>
+        <li>• Convert PDF contracts for modifications</li>
+        <li>• Create editable versions of PDF documents</li>
+        <li>• Extract content from PDF reports</li>
+        <li>• Convert PDF forms to editable Word documents</li>
+      </ul>
+    </section>
+  </div>
+);
+
 const PDFtoWord = () => {
   const [processing, setProcessing] = useState(false);
   const { toast } = useToast();
@@ -22,12 +50,10 @@ const PDFtoWord = () => {
       
       const paragraphs: Paragraph[] = [];
       
-      // Extract text from each page
       for (let i = 1; i <= numPages; i++) {
         const page = await pdf.getPage(i);
         const textContent = await page.getTextContent();
         
-        // Group text items by their y position to form lines
         const lines: Map<number, string[]> = new Map();
         
         textContent.items.forEach((item: any) => {
@@ -40,10 +66,8 @@ const PDFtoWord = () => {
           }
         });
         
-        // Sort lines by y position (top to bottom)
         const sortedYPositions = Array.from(lines.keys()).sort((a, b) => b - a);
         
-        // Add page header
         if (numPages > 1) {
           paragraphs.push(
             new Paragraph({
@@ -59,7 +83,6 @@ const PDFtoWord = () => {
           );
         }
         
-        // Create paragraphs from lines
         sortedYPositions.forEach((y) => {
           const lineText = lines.get(y)!.join(' ');
           if (lineText.trim()) {
@@ -68,7 +91,7 @@ const PDFtoWord = () => {
                 children: [
                   new TextRun({
                     text: lineText,
-                    size: 24, // 12pt
+                    size: 24,
                   }),
                 ],
                 spacing: { after: 120 },
@@ -78,7 +101,6 @@ const PDFtoWord = () => {
         });
       }
       
-      // Create Word document
       const doc = new Document({
         sections: [
           {
@@ -88,20 +110,19 @@ const PDFtoWord = () => {
         ],
       });
       
-      // Generate and save the document
       const blob = await Packer.toBlob(doc);
       const fileName = file.name.replace(/\.pdf$/i, '.docx');
       saveAs(blob, fileName);
       
       toast({
-        title: "Conversion Successful!",
+        title: "Conversion Complete",
         description: `${file.name} has been converted to Word format.`,
       });
     } catch (error) {
       console.error(error);
       toast({
         title: "Conversion Failed",
-        description: "There was an error converting your PDF. The file may be corrupted or password-protected.",
+        description: "The file may be corrupted or password-protected.",
         variant: "destructive",
       });
     } finally {
@@ -112,7 +133,8 @@ const PDFtoWord = () => {
   return (
     <ToolLayout
       title="PDF to Word"
-      description="Convert PDF documents to editable Microsoft Word format (.docx)"
+      description="Extract text from PDF documents and convert to editable Word format."
+      seoContent={<SEOContent />}
     >
       <div className="space-y-6">
         <FileUpload
@@ -124,13 +146,15 @@ const PDFtoWord = () => {
         {processing && (
           <div className="flex items-center justify-center gap-3 py-8">
             <Loader2 className="w-6 h-6 animate-spin text-primary" />
-            <p className="text-lg text-muted-foreground">Extracting text and creating Word document...</p>
+            <p className="text-muted-foreground">Extracting text and creating Word document...</p>
           </div>
         )}
         
         <div className="bg-muted/50 rounded-lg p-4 text-sm text-muted-foreground">
-          <p><strong>Note:</strong> This tool extracts text content from PDFs. Images, complex layouts, and special formatting may not be preserved. Works best with text-based PDFs.</p>
-          <p className="mt-2"><strong>Tip:</strong> For scanned PDFs or image-based documents, OCR processing is not available in this version.</p>
+          <p>
+            <strong className="text-foreground">Note:</strong> This tool extracts text content from PDFs. 
+            Images and complex layouts may not be preserved. Works best with text-based PDFs.
+          </p>
         </div>
       </div>
     </ToolLayout>

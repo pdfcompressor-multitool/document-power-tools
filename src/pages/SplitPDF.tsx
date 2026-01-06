@@ -8,6 +8,34 @@ import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+const SEOContent = () => (
+  <div className="mt-12 space-y-8 text-sm">
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Extract Specific Pages from PDF Documents
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Split large PDF files into smaller documents by extracting specific pages 
+        or page ranges. Perfect for extracting individual certificates, specific 
+        report sections, or creating document subsets.
+      </p>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Common Use Cases
+      </h2>
+      <ul className="text-muted-foreground space-y-2">
+        <li>• Extract specific pages from large documents</li>
+        <li>• Separate multi-page scans into individual files</li>
+        <li>• Extract certificate pages from combined documents</li>
+        <li>• Create document subsets for sharing</li>
+        <li>• Split reports into chapters or sections</li>
+      </ul>
+    </section>
+  </div>
+);
+
 const SplitPDF = () => {
   const [file, setFile] = useState<File | null>(null);
   const [pageCount, setPageCount] = useState<number>(0);
@@ -30,7 +58,6 @@ const SplitPDF = () => {
       const arrayBuffer = await file.arrayBuffer();
       const pdfDoc = await PDFDocument.load(arrayBuffer);
       
-      // Parse ranges (e.g., "1-3,5,7-9")
       const ranges = splitRanges.split(",").map(r => r.trim());
       
       for (let i = 0; i < ranges.length; i++) {
@@ -55,7 +82,7 @@ const SplitPDF = () => {
       }
       
       toast({
-        title: "PDF Split Successfully!",
+        title: "PDF Split Complete",
         description: `Created ${ranges.length} new PDF file(s).`,
       });
     } catch (error) {
@@ -72,7 +99,8 @@ const SplitPDF = () => {
   return (
     <ToolLayout
       title="Split PDF"
-      description="Divide large PDF files into smaller, manageable parts"
+      description="Extract specific pages or divide large PDFs into smaller documents."
+      seoContent={<SEOContent />}
     >
       <div className="space-y-6">
         <FileUpload
@@ -88,7 +116,7 @@ const SplitPDF = () => {
             </p>
             
             <div>
-              <label className="block text-sm font-semibold text-foreground mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Page Ranges to Extract
               </label>
               <Input
@@ -106,11 +134,11 @@ const SplitPDF = () => {
             <Button
               onClick={splitPDF}
               disabled={!splitRanges || processing}
-              className="w-full bg-primary hover:bg-primary-dark text-primary-foreground font-semibold py-6"
+              className="w-full"
             >
               {processing ? (
                 <>
-                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   Splitting PDF...
                 </>
               ) : (

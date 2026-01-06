@@ -7,6 +7,34 @@ import FileUpload from "@/components/FileUpload";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+const SEOContent = () => (
+  <div className="mt-12 space-y-8 text-sm">
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Convert Word Documents to PDF Format
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Transform Microsoft Word documents into universally compatible PDF format. 
+        Perfect for sharing documents that need to look the same on any device 
+        without requiring Word software.
+      </p>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Common Use Cases
+      </h2>
+      <ul className="text-muted-foreground space-y-2">
+        <li>• Convert resumes and CVs to PDF for job applications</li>
+        <li>• Create PDF versions of reports and proposals</li>
+        <li>• Convert cover letters to PDF format</li>
+        <li>• Create shareable PDF documents from Word files</li>
+        <li>• Convert legal documents to PDF for signing</li>
+      </ul>
+    </section>
+  </div>
+);
+
 const WordToPDF = () => {
   const [processing, setProcessing] = useState(false);
   const { toast } = useToast();
@@ -16,11 +44,9 @@ const WordToPDF = () => {
     try {
       const arrayBuffer = await file.arrayBuffer();
       
-      // Convert DOCX to HTML using mammoth
       const result = await mammoth.convertToHtml({ arrayBuffer });
       const html = result.value;
       
-      // Create a temporary container to render HTML
       const container = document.createElement('div');
       container.innerHTML = html;
       container.style.cssText = `
@@ -35,7 +61,6 @@ const WordToPDF = () => {
       `;
       document.body.appendChild(container);
       
-      // Style the content
       const styles = document.createElement('style');
       styles.textContent = `
         h1 { font-size: 24px; margin: 20px 0 10px; }
@@ -48,14 +73,12 @@ const WordToPDF = () => {
       `;
       container.appendChild(styles);
       
-      // Create PDF
       const doc = new jsPDF({
         orientation: 'portrait',
         unit: 'pt',
         format: 'a4'
       });
       
-      // Extract text content and add to PDF
       const text = container.innerText;
       const lines = doc.splitTextToSize(text, 515);
       
@@ -73,27 +96,22 @@ const WordToPDF = () => {
         y += lineHeight;
       });
       
-      // Clean up
       document.body.removeChild(container);
       
-      // Save PDF
       const blob = doc.output('blob');
       const fileName = file.name.replace(/\.(docx?|doc)$/i, '.pdf');
       saveAs(blob, fileName);
       
       toast({
-        title: "Conversion Successful!",
+        title: "Conversion Complete",
         description: `${file.name} has been converted to PDF.`,
       });
       
-      if (result.messages.length > 0) {
-        console.log('Conversion warnings:', result.messages);
-      }
     } catch (error) {
       console.error(error);
       toast({
         title: "Conversion Failed",
-        description: "There was an error converting your Word document. Make sure it's a valid .docx file.",
+        description: "Make sure it's a valid .docx file.",
         variant: "destructive",
       });
     } finally {
@@ -104,7 +122,8 @@ const WordToPDF = () => {
   return (
     <ToolLayout
       title="Word to PDF"
-      description="Convert Microsoft Word documents (.docx) to PDF format"
+      description="Convert Microsoft Word documents to universally compatible PDF format."
+      seoContent={<SEOContent />}
     >
       <div className="space-y-6">
         <FileUpload
@@ -116,13 +135,16 @@ const WordToPDF = () => {
         {processing && (
           <div className="flex items-center justify-center gap-3 py-8">
             <Loader2 className="w-6 h-6 animate-spin text-primary" />
-            <p className="text-lg text-muted-foreground">Converting to PDF...</p>
+            <p className="text-muted-foreground">Converting to PDF...</p>
           </div>
         )}
         
         <div className="bg-muted/50 rounded-lg p-4 text-sm text-muted-foreground">
-          <p><strong>Supported formats:</strong> .docx files (Microsoft Word 2007+)</p>
-          <p className="mt-2"><strong>Note:</strong> Complex formatting, images, and special fonts may not be preserved exactly. For best results, use simple document formatting.</p>
+          <p><strong className="text-foreground">Supported formats:</strong> .docx files (Microsoft Word 2007+)</p>
+          <p className="mt-2">
+            <strong className="text-foreground">Note:</strong> Complex formatting may not be preserved exactly. 
+            Works best with simple document formatting.
+          </p>
         </div>
       </div>
     </ToolLayout>

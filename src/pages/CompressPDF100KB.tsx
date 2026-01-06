@@ -9,11 +9,52 @@ import { useToast } from "@/hooks/use-toast";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
+const SEOContent = () => (
+  <div className="mt-12 space-y-8 text-sm">
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Maximum PDF Compression for Strict Size Limits
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Some portals have very strict 100KB file size limits. This tool applies 
+        maximum compression to help you meet those requirements. Ideal for 
+        competitive exam forms, scholarship applications, and portals with 
+        stringent upload restrictions.
+      </p>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        When You Need 100KB Compression
+      </h2>
+      <ul className="text-muted-foreground space-y-2">
+        <li>• Compress PDF for exam form submission with strict limits</li>
+        <li>• Reduce PDF size for scholarship application portals</li>
+        <li>• PDF compressor for government job applications</li>
+        <li>• Compress PDF below 100KB for online registrations</li>
+        <li>• Maximum compression for signature and photo uploads</li>
+      </ul>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Best Practices for 100KB Compression
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        100KB is very restrictive. For best results: use single-page documents, 
+        ensure your original PDF is clean (no extra margins or blank space), and 
+        consider using grayscale for non-photo documents. Text-based PDFs compress 
+        better than image-heavy documents.
+      </p>
+    </section>
+  </div>
+);
+
 const CompressPDF100KB = () => {
   const [processing, setProcessing] = useState(false);
   const { toast } = useToast();
 
-  const targetSize = 100 * 1024; // 100KB in bytes
+  const targetSize = 100 * 1024;
 
   const compressToTargetSize = async (file: File) => {
     setProcessing(true);
@@ -22,24 +63,20 @@ const CompressPDF100KB = () => {
       const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
       const numPages = pdf.numPages;
       
-      // Binary search for optimal quality
       let minQuality = 5;
       let maxQuality = 95;
       let bestBlob: Blob | null = null;
       let bestQuality = minQuality;
       
-      // First, try with minimum quality to see if target is achievable
       const minBlob = await createCompressedPDF(pdf, numPages, minQuality);
       
       if (minBlob.size > targetSize) {
-        // Can't achieve target even with minimum quality
         bestBlob = minBlob;
         toast({
           title: "Target size not achievable",
-          description: `Minimum possible size is ${(minBlob.size / 1024).toFixed(0)}KB. Try removing pages or using a smaller PDF.`,
+          description: `Minimum possible size is ${(minBlob.size / 1024).toFixed(0)}KB. Try using a single-page document.`,
         });
       } else {
-        // Binary search for optimal quality
         while (maxQuality - minQuality > 5) {
           const midQuality = Math.floor((minQuality + maxQuality) / 2);
           const blob = await createCompressedPDF(pdf, numPages, midQuality);
@@ -53,13 +90,12 @@ const CompressPDF100KB = () => {
           }
         }
         
-        // Final pass with best quality
         if (!bestBlob) {
           bestBlob = await createCompressedPDF(pdf, numPages, minQuality);
         }
         
         toast({
-          title: "Success!",
+          title: "Compression Complete",
           description: `Compressed to ${(bestBlob.size / 1024).toFixed(0)}KB with ${bestQuality}% quality`,
         });
       }
@@ -120,7 +156,8 @@ const CompressPDF100KB = () => {
   return (
     <ToolLayout
       title="Compress PDF to 100KB"
-      description="Automatically compress your PDF to approximately 100KB"
+      description="Maximum compression for strict file size limits on exam forms and application portals."
+      seoContent={<SEOContent />}
     >
       <div className="space-y-6">
         <FileUpload
@@ -132,12 +169,15 @@ const CompressPDF100KB = () => {
         {processing && (
           <div className="flex items-center justify-center gap-3 py-8">
             <Loader2 className="w-6 h-6 animate-spin text-primary" />
-            <p className="text-lg text-muted-foreground">Finding optimal compression...</p>
+            <p className="text-muted-foreground">Applying maximum compression...</p>
           </div>
         )}
         
         <div className="bg-muted/50 rounded-lg p-4 text-sm text-muted-foreground">
-          <p><strong>Note:</strong> 100KB is very small. This works best for text-only PDFs with few pages. Complex PDFs may not reach this target.</p>
+          <p>
+            <strong className="text-foreground">Note:</strong> 100KB is very restrictive. 
+            Works best with single-page, text-based documents. Complex PDFs may not reach this target.
+          </p>
         </div>
       </div>
     </ToolLayout>

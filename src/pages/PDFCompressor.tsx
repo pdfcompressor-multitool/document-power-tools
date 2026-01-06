@@ -11,6 +11,47 @@ import { Button } from "@/components/ui/button";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
+const SEOContent = () => (
+  <div className="mt-12 space-y-8 text-sm">
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Compress PDF for Job Applications and Government Forms
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Our PDF compressor helps you reduce file sizes for job application portals, 
+        college admission forms, and government document submissions. Whether you need 
+        to compress PDF for Aadhaar card upload, passport applications, or PAN card 
+        submissions, this tool delivers optimal compression without quality loss.
+      </p>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        How PDF Compression Works
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        The compressor converts each PDF page to an optimized image format, then 
+        rebuilds the document with your chosen quality level. Lower quality settings 
+        produce smaller files—perfect for online forms with strict size limits. 
+        For documents with text only, even 50% quality often looks identical to the original.
+      </p>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Common Use Cases
+      </h2>
+      <ul className="text-muted-foreground space-y-2">
+        <li>• Compress PDF for email attachments under size limits</li>
+        <li>• Reduce PDF size for government form submission portals</li>
+        <li>• Online PDF compressor for job application documents</li>
+        <li>• Fast PDF compression for college admission forms</li>
+        <li>• Secure PDF compressor without uploading to external servers</li>
+      </ul>
+    </section>
+  </div>
+);
+
 const PDFCompressor = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [processing, setProcessing] = useState(false);
@@ -69,7 +110,7 @@ const PDFCompressor = () => {
       saveAs(compressedBlob, `compressed_${selectedFile.name}`);
       
       toast({
-        title: "PDF Compressed Successfully!",
+        title: "PDF Compressed",
         description: `Size reduced by ${reduction}%. Original: ${(originalSize / 1024 / 1024).toFixed(2)}MB → Compressed: ${(compressedBlob.size / 1024 / 1024).toFixed(2)}MB`,
       });
     } catch (error) {
@@ -91,7 +132,8 @@ const PDFCompressor = () => {
   return (
     <ToolLayout
       title="PDF Compressor"
-      description="Reduce PDF file size by adjusting image quality"
+      description="Reduce PDF file size by adjusting image quality. Perfect for job applications and government forms."
+      seoContent={<SEOContent />}
     >
       <div className="space-y-6">
         <FileUpload
@@ -103,12 +145,12 @@ const PDFCompressor = () => {
         {selectedFile && !processing && (
           <div className="space-y-4">
             <div className="bg-muted/50 rounded-lg p-4">
-              <p className="text-sm text-muted-foreground mb-2">Selected: {selectedFile.name}</p>
+              <p className="text-sm text-muted-foreground mb-1">Selected: {selectedFile.name}</p>
               <p className="text-sm text-muted-foreground">Size: {(selectedFile.size / 1024 / 1024).toFixed(2)}MB</p>
             </div>
             
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Quality: {quality[0]}%</label>
+            <div className="space-y-3">
+              <label className="text-sm font-medium text-foreground">Quality: {quality[0]}%</label>
               <Slider
                 value={quality}
                 onValueChange={setQuality}
@@ -129,7 +171,7 @@ const PDFCompressor = () => {
         {processing && (
           <div className="flex items-center justify-center gap-3 py-8">
             <Loader2 className="w-6 h-6 animate-spin text-primary" />
-            <p className="text-lg text-muted-foreground">Compressing your PDF...</p>
+            <p className="text-muted-foreground">Compressing your PDF...</p>
           </div>
         )}
       </div>

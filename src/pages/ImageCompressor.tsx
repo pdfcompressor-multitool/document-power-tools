@@ -6,6 +6,34 @@ import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Slider } from "@/components/ui/slider";
 
+const SEOContent = () => (
+  <div className="mt-12 space-y-8 text-sm">
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Optimize Images for Web and Email
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Reduce image file sizes for faster website loading and email attachments. 
+        Our image compressor lets you balance quality and file size with an 
+        adjustable quality slider.
+      </p>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Common Use Cases
+      </h2>
+      <ul className="text-muted-foreground space-y-2">
+        <li>• Compress images for faster website loading</li>
+        <li>• Reduce photo size for email attachments</li>
+        <li>• Optimize images for social media uploads</li>
+        <li>• Compress product photos for e-commerce</li>
+        <li>• Reduce image size for document embeddings</li>
+      </ul>
+    </section>
+  </div>
+);
+
 const ImageCompressor = () => {
   const [processing, setProcessing] = useState(false);
   const [quality, setQuality] = useState([80]);
@@ -37,8 +65,8 @@ const ImageCompressor = () => {
                 saveAs(blob, `compressed_${file.name}`);
                 
                 toast({
-                  title: "Image Compressed!",
-                  description: `Size reduced by ${reduction}%. Original: ${(originalSize / 1024).toFixed(0)}KB → Compressed: ${(compressedSize / 1024).toFixed(0)}KB`,
+                  title: "Image Compressed",
+                  description: `Size reduced by ${reduction}%. ${(originalSize / 1024).toFixed(0)}KB → ${(compressedSize / 1024).toFixed(0)}KB`,
                 });
               }
               setProcessing(false);
@@ -63,11 +91,12 @@ const ImageCompressor = () => {
   return (
     <ToolLayout
       title="Image Compressor"
-      description="Optimize and compress JPG and PNG images easily"
+      description="Optimize JPG and PNG images for web use and email attachments."
+      seoContent={<SEOContent />}
     >
       <div className="space-y-6">
-        <div className="space-y-4">
-          <label className="block text-sm font-semibold text-foreground">
+        <div className="space-y-3">
+          <label className="block text-sm font-medium text-foreground">
             Compression Quality: {quality[0]}%
           </label>
           <Slider
@@ -79,7 +108,7 @@ const ImageCompressor = () => {
             className="w-full"
           />
           <p className="text-xs text-muted-foreground">
-            Lower quality = smaller file size. 80% is recommended for web use.
+            80% quality is recommended for web use.
           </p>
         </div>
         
@@ -92,7 +121,7 @@ const ImageCompressor = () => {
         {processing && (
           <div className="flex items-center justify-center gap-3 py-8">
             <Loader2 className="w-6 h-6 animate-spin text-primary" />
-            <p className="text-lg text-muted-foreground">Compressing image...</p>
+            <p className="text-muted-foreground">Compressing image...</p>
           </div>
         )}
       </div>

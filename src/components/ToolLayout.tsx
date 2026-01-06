@@ -8,10 +8,11 @@ import { Button } from "./ui/button";
 interface ToolLayoutProps {
   title: string;
   description: string;
+  seoContent?: ReactNode;
   children: ReactNode;
 }
 
-const ToolLayout = ({ title, description, children }: ToolLayoutProps) => {
+const ToolLayout = ({ title, description, seoContent, children }: ToolLayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -21,26 +22,32 @@ const ToolLayout = ({ title, description, children }: ToolLayoutProps) => {
           <Button
             asChild
             variant="ghost"
-            className="mb-8 text-muted-foreground hover:text-primary"
+            className="mb-6 text-muted-foreground hover:text-foreground"
           >
             <Link to="/">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to all tools
+              All tools
             </Link>
           </Button>
           
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-black mb-4 tracking-tight text-foreground">
+          <div className="mb-10">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
               {title}
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground">
               {description}
             </p>
           </div>
           
-          <div className="bg-card rounded-2xl shadow-xl border border-border p-8 md:p-12">
+          <div className="bg-card rounded-lg border border-border p-6 md:p-8 mb-10">
             {children}
           </div>
+          
+          {seoContent && (
+            <div className="prose prose-invert max-w-none">
+              {seoContent}
+            </div>
+          )}
         </div>
       </main>
       

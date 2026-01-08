@@ -8,11 +8,10 @@ import {
   Maximize2, 
   Layers, 
   Scissors, 
-  FileText, 
-  File,
+  PenTool, 
+  Lock,
   Shield,
-  Zap,
-  Lock
+  Zap
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -78,17 +77,17 @@ const Index = () => {
       highlight: false,
     },
     {
-      title: "Word to PDF",
-      description: "Convert Microsoft Word documents to universally compatible PDF format.",
-      icon: FileText,
-      link: "/word-to-pdf",
-      highlight: false,
+      title: "Sign PDF",
+      description: "Add your signature to PDF documents. Draw or upload a signature image.",
+      icon: PenTool,
+      link: "/sign-pdf",
+      highlight: true,
     },
     {
-      title: "PDF to Word",
-      description: "Extract text from PDF files into editable Word documents.",
-      icon: File,
-      link: "/pdf-to-word",
+      title: "Protect PDF",
+      description: "Add password protection and set permissions for your PDF documents.",
+      icon: Lock,
+      link: "/protect-pdf",
       highlight: false,
     },
   ];

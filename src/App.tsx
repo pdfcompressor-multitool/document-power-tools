@@ -13,8 +13,8 @@ import PDFtoJPG from "./pages/PDFtoJPG";
 import ImageCompressor from "./pages/ImageCompressor";
 import MergePDF from "./pages/MergePDF";
 import SplitPDF from "./pages/SplitPDF";
-import WordToPDF from "./pages/WordToPDF";
-import PDFtoWord from "./pages/PDFtoWord";
+import SignPDF from "./pages/SignPDF";
+import ProtectPDF from "./pages/ProtectPDF";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -59,8 +59,8 @@ const App = () => (
             <Route path="/image-compressor" element={<ImageCompressor />} />
             <Route path="/merge-pdf" element={<MergePDF />} />
             <Route path="/split-pdf" element={<SplitPDF />} />
-            <Route path="/word-to-pdf" element={<WordToPDF />} />
-            <Route path="/pdf-to-word" element={<PDFtoWord />} />
+            <Route path="/sign-pdf" element={<SignPDF />} />
+            <Route path="/protect-pdf" element={<ProtectPDF />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </RedirectHandler>

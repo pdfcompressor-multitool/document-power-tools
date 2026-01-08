@@ -1,32 +1,60 @@
 import { FileText } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { scrollToSection } from "@/lib/scrollToSection";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const goTo = (section: "tools" | "features" | "security") => {
+    // Always ensure we're on home
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => scrollToSection(section, navigate), 300);
+    } else {
+      scrollToSection(section, navigate);
+    }
+  };
+
   return (
     <header className="bg-card/80 backdrop-blur-md border-b border-border sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4">
         <nav className="flex justify-between items-center">
-          {/* Logo → Home */}
-          <a href="#/" className="flex items-center gap-3">
+          {/* Logo */}
+          <div
+            onClick={() => navigate("/")}
+            className="flex items-center gap-3 cursor-pointer"
+          >
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
               <FileText className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold text-foreground">
               DocFlow
             </span>
-          </a>
+          </div>
 
+          {/* Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#/" className="text-muted-foreground hover:text-foreground font-medium">
+            <button
+              onClick={() => goTo("tools")}
+              className="text-muted-foreground hover:text-foreground font-medium transition-colors"
+            >
               Tools
-            </a>
+            </button>
 
-            <a href="#/#features" className="text-muted-foreground hover:text-foreground font-medium">
+            <button
+              onClick={() => goTo("features")}
+              className="text-muted-foreground hover:text-foreground font-medium transition-colors"
+            >
               Features
-            </a>
+            </button>
 
-            <a href="#/#security" className="text-muted-foreground hover:text-foreground font-medium">
+            <button
+              onClick={() => goTo("security")}
+              className="text-muted-foreground hover:text-foreground font-medium transition-colors"
+            >
               Security
-            </a>
+            </button>
           </div>
         </nav>
       </div>

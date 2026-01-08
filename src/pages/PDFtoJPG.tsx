@@ -6,7 +6,10 @@ import FileUpload from "@/components/FileUpload";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.mjs",
+  import.meta.url
+).toString();
 
 const SEOContent = () => (
   <div className="mt-12 space-y-8 text-sm">

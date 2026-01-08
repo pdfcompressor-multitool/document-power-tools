@@ -36,7 +36,8 @@ const SEOContent = () => (
 
 const ImageCompressor = () => {
   const [processing, setProcessing] = useState(false);
-  const [quality, setQuality] = useState([80]);
+  const [quality, setQuality] = useState([60]);
+  const [resizePercent, setResizePercent] = useState([100]);
   const { toast } = useToast();
 
   const compressImage = async (file: File) => {
@@ -48,12 +49,34 @@ const ImageCompressor = () => {
       reader.onload = (e) => {
         img.src = e.target?.result as string;
         img.onload = () => {
+          // Calculate new dimensions based on resize percentage
+          const scale = resizePercent[0] / 100;
+          const newWidth = Math.round(img.width * scale);
+          const newHeight = Math.round(img.height * scale);
+          
           const canvas = document.createElement("canvas");
-          canvas.width = img.width;
-          canvas.height = img.height;
+          canvas.width = newWidth;
+          canvas.height = newHeight;
           
           const ctx = canvas.getContext("2d");
-          ctx?.drawImage(img, 0, 0);
+          if (!ctx) {
+            toast({
+              title: "Compression Failed",
+              description: "Could not create canvas context.",
+              variant: "destructive",
+            });
+            setProcessing(false);
+            return;
+          }
+          
+          // Enable image smoothing for better quality when resizing
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = "high";
+          ctx.drawImage(img, 0, 0, newWidth, newHeight);
+          
+          // Determine output format - always use JPEG for better compression
+          const outputType = "image/jpeg";
+          const qualityValue = quality[0] / 100;
           
           canvas.toBlob(
             (blob) => {
@@ -62,7 +85,11 @@ const ImageCompressor = () => {
                 const compressedSize = blob.size;
                 const reduction = ((originalSize - compressedSize) / originalSize * 100).toFixed(1);
                 
-                saveAs(blob, `compressed_${file.name}`);
+                // Generate output filename
+                const baseName = file.name.replace(/\.[^/.]+$/, "");
+                const outputName = `compressed_${baseName}.jpg`;
+                
+                saveAs(blob, outputName);
                 
                 toast({
                   title: "Image Compressed",
@@ -71,8 +98,8 @@ const ImageCompressor = () => {
               }
               setProcessing(false);
             },
-            file.type,
-            quality[0] / 100
+            outputType,
+            qualityValue
           );
         };
       };
@@ -102,19 +129,36 @@ const ImageCompressor = () => {
           <Slider
             value={quality}
             onValueChange={setQuality}
+            min={5}
+            max={100}
+            step={5}
+            className="w-full"
+          />
+          <p className="text-xs text-muted-foreground">
+            Lower quality = smaller file size. 40-60% is good for web use.
+          </p>
+        </div>
+        
+        <div className="space-y-3">
+          <label className="block text-sm font-medium text-foreground">
+            Resize: {resizePercent[0]}%
+          </label>
+          <Slider
+            value={resizePercent}
+            onValueChange={setResizePercent}
             min={10}
             max={100}
             step={5}
             className="w-full"
           />
           <p className="text-xs text-muted-foreground">
-            80% quality is recommended for web use.
+            Reduce dimensions for even smaller file sizes. 50% = quarter the pixels.
           </p>
         </div>
         
         <FileUpload
           onFileSelect={compressImage}
-          accept="image/jpeg,image/jpg,image/png"
+          accept="image/jpeg,image/jpg,image/png,image/webp"
           maxSize={20}
         />
         
@@ -124,6 +168,13 @@ const ImageCompressor = () => {
             <p className="text-muted-foreground">Compressing image...</p>
           </div>
         )}
+        
+        <div className="bg-muted/50 rounded-lg p-4 text-sm text-muted-foreground">
+          <p>
+            <strong className="text-foreground">Tip:</strong> For maximum compression, 
+            reduce both quality and size. Output is always JPEG for best compression.
+          </p>
+        </div>
       </div>
     </ToolLayout>
   );

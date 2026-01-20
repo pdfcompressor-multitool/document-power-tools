@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Button } from "./ui/button";
+import { useSEO } from "@/hooks/useSEO";
 
 interface ToolLayoutProps {
   title: string;
@@ -26,17 +26,10 @@ const ToolLayout = ({
   const pageTitle = seoTitle || `${title} – Free Online Tool | DocFlow`;
   const pageDescription = seoDescription || description;
 
+  useSEO({ title: pageTitle, description: pageDescription });
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={pageDescription} />
-      </Helmet>
-      
       <Header />
       
       <main className="flex-1 py-12 bg-background">

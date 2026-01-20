@@ -18,13 +18,17 @@ const SEOContent = () => (
   <div className="mt-12 space-y-8 text-sm">
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Compress PDF for Job Applications and Government Forms
+        Compress PDF Online – Reduce File Size for Email and Forms
       </h2>
       <p className="text-muted-foreground leading-relaxed">
         Our PDF compressor helps you reduce file sizes for job application portals, 
         college admission forms, and government document submissions. Whether you need 
         to compress PDF for Aadhaar card upload, passport applications, or PAN card 
         submissions, this tool delivers optimal compression without quality loss.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Need stricter size limits? Try our <a href="#/compress-pdf-200kb" className="text-primary hover:underline">Compress to 200KB</a> or <a href="#/compress-pdf-100kb" className="text-primary hover:underline">Compress to 100KB</a> tools 
+        for government form uploads with strict file size requirements.
       </p>
     </section>
     
@@ -42,14 +46,14 @@ const SEOContent = () => (
     
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Common Use Cases
+        Why Use DocFlow for PDF Compression?
       </h2>
       <ul className="text-muted-foreground space-y-2">
-        <li>• Compress PDF for email attachments under size limits</li>
-        <li>• Reduce PDF size for government form submission portals</li>
-        <li>• Online PDF compressor for job application documents</li>
-        <li>• Fast PDF compression for college admission forms</li>
-        <li>• Secure PDF compressor without uploading to external servers</li>
+        <li>• <strong>100% Private:</strong> Files never leave your device—all processing happens in your browser</li>
+        <li>• <strong>No Account Required:</strong> Use instantly without registration or email</li>
+        <li>• <strong>No File Uploads:</strong> Unlike other tools, we don't upload your documents to external servers</li>
+        <li>• <strong>Fast Processing:</strong> Compress PDFs in seconds, not minutes</li>
+        <li>• <strong>Adjustable Quality:</strong> Choose the compression level that works for your needs</li>
       </ul>
     </section>
   </div>
@@ -136,6 +140,8 @@ const PDFCompressor = () => {
     <ToolLayout
       title="PDF Compressor"
       description="Reduce PDF file size by adjusting image quality. Perfect for job applications and government forms."
+      seoTitle="Compress PDF Online Free – Reduce File Size | DocFlow"
+      seoDescription="Free PDF compressor for job applications, government forms, and email attachments. Compress PDF files securely in your browser—no uploads, no account required."
       seoContent={<SEOContent />}
     >
       <div className="space-y-6">

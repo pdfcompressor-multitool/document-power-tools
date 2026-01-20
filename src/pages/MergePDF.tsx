@@ -10,12 +10,16 @@ const SEOContent = () => (
   <div className="mt-12 space-y-8 text-sm">
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Combine Multiple PDFs Into One Document
+        Merge PDF Files Online – Combine Multiple PDFs
       </h2>
       <p className="text-muted-foreground leading-relaxed">
-        Merge multiple PDF files into a single document for easier organization 
+        Combine multiple PDF files into a single document for easier organization 
         and sharing. Perfect for combining scanned pages, creating document packages, 
-        or consolidating reports.
+        or consolidating reports into one file.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        After merging, you may want to <a href="#/pdf-compressor" className="text-primary hover:underline">compress the PDF</a> to 
+        reduce file size, or <a href="#/protect-pdf" className="text-primary hover:underline">add password protection</a> for security.
       </p>
     </section>
     
@@ -26,10 +30,20 @@ const SEOContent = () => (
       <ul className="text-muted-foreground space-y-2">
         <li>• Combine multiple scanned pages into one document</li>
         <li>• Merge contract pages from different sources</li>
-        <li>• Create document packages for submissions</li>
+        <li>• Create document packages for job applications</li>
         <li>• Consolidate monthly reports into annual documents</li>
-        <li>• Combine multiple invoices for records</li>
+        <li>• Combine multiple invoices for accounting records</li>
       </ul>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Privacy & Security
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Your PDFs are merged entirely in your browser. No files are uploaded to 
+        external servers, ensuring complete privacy for sensitive documents.
+      </p>
     </section>
   </div>
 );
@@ -96,6 +110,8 @@ const MergePDF = () => {
     <ToolLayout
       title="Merge PDF"
       description="Combine multiple PDF documents into a single file."
+      seoTitle="Merge PDF Files Online Free – Combine PDFs | DocFlow"
+      seoDescription="Combine multiple PDF files into one document. Free browser-based tool—no uploads, no account required. Perfect for document packages."
       seoContent={<SEOContent />}
     >
       <div className="space-y-6">

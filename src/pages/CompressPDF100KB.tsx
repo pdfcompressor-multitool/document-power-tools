@@ -16,13 +16,17 @@ const SEOContent = () => (
   <div className="mt-12 space-y-8 text-sm">
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Maximum PDF Compression for Strict Size Limits
+        Compress PDF to 100KB – Maximum Compression for Strict Limits
       </h2>
       <p className="text-muted-foreground leading-relaxed">
-        Some portals have very strict 100KB file size limits. This tool applies 
-        maximum compression to help you meet those requirements. Ideal for 
-        competitive exam forms, scholarship applications, and portals with 
-        stringent upload restrictions.
+        Some exam portals and scholarship applications enforce a strict 100KB file size limit. 
+        This tool applies maximum compression to help you meet those requirements while 
+        maintaining document readability. Ideal for competitive exam forms, government job 
+        applications, and portals with stringent upload restrictions.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        For less aggressive compression, try our <a href="#/compress-pdf-200kb" className="text-primary hover:underline">Compress to 200KB</a> tool 
+        or use the <a href="#/pdf-compressor" className="text-primary hover:underline">PDF Compressor</a> with adjustable quality settings.
       </p>
     </section>
     
@@ -31,23 +35,27 @@ const SEOContent = () => (
         When You Need 100KB Compression
       </h2>
       <ul className="text-muted-foreground space-y-2">
-        <li>• Compress PDF for exam form submission with strict limits</li>
+        <li>• Compress PDF for UPSC and SSC exam form submissions</li>
         <li>• Reduce PDF size for scholarship application portals</li>
-        <li>• PDF compressor for government job applications</li>
-        <li>• Compress PDF below 100KB for online registrations</li>
-        <li>• Maximum compression for signature and photo uploads</li>
+        <li>• PDF compressor for government job applications (IBPS, RRB, etc.)</li>
+        <li>• Compress PDF below 100KB for college admissions</li>
+        <li>• Maximum compression for signature and photo document uploads</li>
       </ul>
     </section>
     
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Best Practices for 100KB Compression
+        Tips for Achieving 100KB
       </h2>
       <p className="text-muted-foreground leading-relaxed">
         100KB is very restrictive. For best results: use single-page documents, 
         ensure your original PDF is clean (no extra margins or blank space), and 
         consider using grayscale for non-photo documents. Text-based PDFs compress 
         better than image-heavy documents.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        <strong>Privacy guaranteed:</strong> Your files are processed entirely in your browser. 
+        Nothing is uploaded to any server.
       </p>
     </section>
   </div>
@@ -160,6 +168,8 @@ const CompressPDF100KB = () => {
     <ToolLayout
       title="Compress PDF to 100KB"
       description="Maximum compression for strict file size limits on exam forms and application portals."
+      seoTitle="Compress PDF to 100KB Free – Exam Forms & Applications"
+      seoDescription="Compress PDF below 100KB for UPSC, SSC, scholarship forms, and strict upload limits. Free browser-based tool—no uploads, instant download."
       seoContent={<SEOContent />}
     >
       <div className="space-y-6">

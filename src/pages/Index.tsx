@@ -134,16 +134,15 @@ const Index = () => {
         <div className="container mx-auto px-6 py-20 md:py-28 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
-              Document Tools That{" "}
-              <span className="text-gradient">Respect Your Privacy</span>
+              Free & Secure PDF Tools for{" "}
+              <span className="text-gradient">Government Forms & Job Applications</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-              Compress PDFs for government forms, convert documents, and process
-              files—all securely in your browser. No uploads, no accounts, no
-              data collection.
+              Compress PDF to 100KB or 200KB for Aadhaar, passport, and exam forms. 
+              Sign, protect, merge, and convert documents—all processed locally in your browser. 
+              No uploads to external servers, no account required.
             </p>
 
-            {/* ✅ FIXED FOR HASH ROUTER */}
             <Button
               asChild
               size="lg"

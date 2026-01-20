@@ -12,12 +12,16 @@ const SEOContent = () => (
   <div className="mt-12 space-y-8 text-sm">
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Extract Specific Pages from PDF Documents
+        Split PDF Online – Extract Pages from PDFs
       </h2>
       <p className="text-muted-foreground leading-relaxed">
         Split large PDF files into smaller documents by extracting specific pages 
         or page ranges. Perfect for extracting individual certificates, specific 
-        report sections, or creating document subsets.
+        report sections, or creating document subsets for different purposes.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Need to combine PDFs instead? Use our <a href="#/merge-pdf" className="text-primary hover:underline">Merge PDF</a> tool 
+        to join multiple files into one.
       </p>
     </section>
     
@@ -32,6 +36,16 @@ const SEOContent = () => (
         <li>• Create document subsets for sharing</li>
         <li>• Split reports into chapters or sections</li>
       </ul>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Privacy & Security
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Your PDFs are split entirely in your browser. No files are uploaded to 
+        external servers, ensuring complete privacy for sensitive documents.
+      </p>
     </section>
   </div>
 );
@@ -100,6 +114,8 @@ const SplitPDF = () => {
     <ToolLayout
       title="Split PDF"
       description="Extract specific pages or divide large PDFs into smaller documents."
+      seoTitle="Split PDF Online Free – Extract Pages | DocFlow"
+      seoDescription="Split PDF files and extract specific pages. Free browser-based tool—no uploads, instant download. Perfect for large documents."
       seoContent={<SEOContent />}
     >
       <div className="space-y-6">

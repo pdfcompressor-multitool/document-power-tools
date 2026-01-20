@@ -10,12 +10,16 @@ const SEOContent = () => (
   <div className="mt-12 space-y-8 text-sm">
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Convert Photos to PDF for Document Submission
+        Convert JPG to PDF – Photos to Document Format
       </h2>
       <p className="text-muted-foreground leading-relaxed">
-        Quickly convert JPG images to PDF format for document submissions. 
+        Quickly convert JPG and PNG images to PDF format for document submissions. 
         Perfect for converting scanned documents, photos of certificates, 
         ID cards, and other images into universally accepted PDF format.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        After converting, you may want to <a href="#/pdf-compressor" className="text-primary hover:underline">compress the PDF</a> to 
+        meet file size requirements for government portals.
       </p>
     </section>
     
@@ -26,10 +30,21 @@ const SEOContent = () => (
       <ul className="text-muted-foreground space-y-2">
         <li>• Convert scanned documents to PDF for official submissions</li>
         <li>• Create PDF from photos of certificates and diplomas</li>
-        <li>• Convert ID card photos to PDF format</li>
+        <li>• Convert ID card and passport photos to PDF format</li>
         <li>• Create PDF documents from mobile phone photos</li>
         <li>• Convert receipts and invoices to PDF for records</li>
       </ul>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Privacy & Security
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Your images are converted to PDF entirely in your browser. No files are 
+        uploaded to external servers, and no data is stored. The conversion happens 
+        instantly on your device.
+      </p>
     </section>
   </div>
 );
@@ -86,6 +101,8 @@ const JPGtoPDF = () => {
     <ToolLayout
       title="JPG to PDF"
       description="Convert images to PDF format for document submissions and official forms."
+      seoTitle="Convert JPG to PDF Free – Image to Document | DocFlow"
+      seoDescription="Convert JPG and PNG images to PDF for document submissions. Free browser-based converter—no uploads, instant download."
       seoContent={<SEOContent />}
     >
       <div className="space-y-6">

@@ -17,12 +17,17 @@ const SEOContent = () => (
   <div className="mt-12 space-y-8 text-sm">
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Sign PDF Documents Online
+        Sign PDF Online Free – Add Your Signature Instantly
       </h2>
       <p className="text-muted-foreground leading-relaxed">
         Add your signature to PDF documents directly in your browser. Draw a signature 
-        or upload a signature image, then place it anywhere on your document. Perfect 
-        for contracts, agreements, and official documents.
+        with your mouse or touchpad, or upload a signature image. Place it anywhere on 
+        your document and download the signed PDF instantly. Perfect for contracts, 
+        agreements, applications, and official documents.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Need to secure your signed document? Use our <a href="#/protect-pdf" className="text-primary hover:underline">Protect PDF</a> tool 
+        to add password protection after signing.
       </p>
     </section>
     
@@ -31,11 +36,24 @@ const SEOContent = () => (
         Common Use Cases
       </h2>
       <ul className="text-muted-foreground space-y-2">
-        <li>• Sign contracts and agreements digitally</li>
-        <li>• Add signatures to official documents</li>
-        <li>• Sign rental agreements and leases</li>
+        <li>• Sign contracts and business agreements digitally</li>
+        <li>• Add signatures to rental agreements and leases</li>
+        <li>• Sign job offer letters and employment documents</li>
         <li>• Authorize purchase orders and invoices</li>
-        <li>• Sign consent forms and applications</li>
+        <li>• Sign consent forms, applications, and declarations</li>
+      </ul>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Why Use DocFlow to Sign PDFs?
+      </h2>
+      <ul className="text-muted-foreground space-y-2">
+        <li>• <strong>100% Private:</strong> Your documents and signatures never leave your device</li>
+        <li>• <strong>No Account Required:</strong> Sign PDFs instantly without registration</li>
+        <li>• <strong>Multi-page Support:</strong> Navigate through pages and sign anywhere</li>
+        <li>• <strong>Drag & Resize:</strong> Position and size your signature precisely</li>
+        <li>• <strong>Draw or Upload:</strong> Create signatures on-screen or use an existing image</li>
       </ul>
     </section>
   </div>
@@ -317,6 +335,8 @@ const SignPDF = () => {
     <ToolLayout
       title="Sign PDF Online"
       description="Add your signature to PDF documents. Draw or upload a signature and place it anywhere on the document."
+      seoTitle="Sign PDF Online Free – Add Signature Instantly | DocFlow"
+      seoDescription="Sign PDF documents online for free. Draw or upload your signature, place it anywhere, and download instantly. 100% private—no uploads, no account."
       seoContent={<SEOContent />}
     >
       <div className="space-y-6">

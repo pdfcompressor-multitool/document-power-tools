@@ -15,12 +15,15 @@ const SEOContent = () => (
   <div className="mt-12 space-y-8 text-sm">
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Extract PDF Pages as High-Quality Images
+        Convert PDF to JPG – Extract Pages as Images
       </h2>
       <p className="text-muted-foreground leading-relaxed">
-        Convert PDF pages to JPG images for presentations, documents, and social media. 
-        Each page is extracted as a separate high-resolution image that you can use 
-        in presentations, share online, or include in other documents.
+        Convert PDF pages to high-quality JPG images for presentations, documents, 
+        and social media. Each page is extracted as a separate high-resolution image 
+        that you can use in presentations, share online, or include in other documents.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Need to convert images back to PDF? Use our <a href="#/jpg-to-pdf" className="text-primary hover:underline">JPG to PDF</a> converter.
       </p>
     </section>
     
@@ -29,12 +32,22 @@ const SEOContent = () => (
         Common Use Cases
       </h2>
       <ul className="text-muted-foreground space-y-2">
-        <li>• Extract PDF pages for PowerPoint presentations</li>
-        <li>• Convert PDF charts and graphics to images</li>
+        <li>• Extract PDF pages for PowerPoint and Google Slides</li>
+        <li>• Convert PDF charts and graphics to shareable images</li>
         <li>• Create image previews of PDF documents</li>
         <li>• Extract pages for social media sharing</li>
-        <li>• Convert PDF to images for web embedding</li>
+        <li>• Convert PDF to images for website embedding</li>
       </ul>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Privacy & Security
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Your PDFs are converted to images entirely in your browser. No files are 
+        uploaded to external servers, ensuring complete privacy for sensitive documents.
+      </p>
     </section>
   </div>
 );
@@ -93,6 +106,8 @@ const PDFtoJPG = () => {
     <ToolLayout
       title="PDF to JPG"
       description="Extract PDF pages as high-quality JPG images for presentations and sharing."
+      seoTitle="Convert PDF to JPG Free – Extract Pages as Images"
+      seoDescription="Convert PDF pages to high-quality JPG images. Free browser-based tool for presentations and sharing—no uploads required."
       seoContent={<SEOContent />}
     >
       <div className="space-y-6">

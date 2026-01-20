@@ -10,12 +10,16 @@ const SEOContent = () => (
   <div className="mt-12 space-y-8 text-sm">
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Optimize Images for Web and Email
+        Compress Images Online – Reduce JPG and PNG File Size
       </h2>
       <p className="text-muted-foreground leading-relaxed">
-        Reduce image file sizes for faster website loading and email attachments. 
-        Our image compressor lets you balance quality and file size with an 
-        adjustable quality slider.
+        Reduce image file sizes for faster website loading, email attachments, and 
+        online form submissions. Our image compressor lets you balance quality and 
+        file size with adjustable compression and resize sliders.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Need to compress a PDF instead? Try our <a href="#/pdf-compressor" className="text-primary hover:underline">PDF Compressor</a> or 
+        target-size tools like <a href="#/compress-pdf-200kb" className="text-primary hover:underline">Compress to 200KB</a>.
       </p>
     </section>
     
@@ -24,12 +28,23 @@ const SEOContent = () => (
         Common Use Cases
       </h2>
       <ul className="text-muted-foreground space-y-2">
-        <li>• Compress images for faster website loading</li>
-        <li>• Reduce photo size for email attachments</li>
+        <li>• Compress images for faster website loading speeds</li>
+        <li>• Reduce photo size for email attachments under limits</li>
         <li>• Optimize images for social media uploads</li>
-        <li>• Compress product photos for e-commerce</li>
-        <li>• Reduce image size for document embeddings</li>
+        <li>• Compress product photos for e-commerce listings</li>
+        <li>• Reduce image size for document embeddings and forms</li>
       </ul>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Privacy & Security
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Your images are compressed entirely in your browser. No files are uploaded 
+        to external servers, and no data is stored. Output is always JPEG format for 
+        maximum compression efficiency.
+      </p>
     </section>
   </div>
 );
@@ -119,6 +134,8 @@ const ImageCompressor = () => {
     <ToolLayout
       title="Image Compressor"
       description="Optimize JPG and PNG images for web use and email attachments."
+      seoTitle="Compress Images Online Free – Reduce JPG & PNG Size"
+      seoDescription="Compress JPG and PNG images for web, email, and forms. Adjustable quality and resize options—100% browser-based, no uploads."
       seoContent={<SEOContent />}
     >
       <div className="space-y-6">

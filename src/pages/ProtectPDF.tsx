@@ -13,12 +13,16 @@ const SEOContent = () => (
   <div className="mt-12 space-y-8 text-sm">
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Password Protect Your PDF Documents
+        Protect PDF with Password – Secure Your Documents
       </h2>
       <p className="text-muted-foreground leading-relaxed">
         Add password protection to your PDF files to prevent unauthorized access. 
         Set permissions to control printing, copying, and editing. All encryption 
-        happens locally in your browser for maximum privacy.
+        happens locally in your browser—your documents are never uploaded to any server.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Need to sign a document before protecting it? Use our <a href="#/sign-pdf" className="text-primary hover:underline">Sign PDF</a> tool first, 
+        then add password protection.
       </p>
     </section>
     
@@ -27,12 +31,23 @@ const SEOContent = () => (
         Common Use Cases
       </h2>
       <ul className="text-muted-foreground space-y-2">
-        <li>• Protect confidential business documents</li>
-        <li>• Secure financial statements and reports</li>
-        <li>• Password protect personal documents</li>
-        <li>• Restrict printing of sensitive PDFs</li>
-        <li>• Prevent copying of intellectual property</li>
+        <li>• Protect confidential business documents and contracts</li>
+        <li>• Secure financial statements, tax returns, and reports</li>
+        <li>• Password protect personal documents like wills and deeds</li>
+        <li>• Restrict printing of sensitive company PDFs</li>
+        <li>• Prevent copying of intellectual property and research</li>
       </ul>
+    </section>
+    
+    <section>
+      <h2 className="text-xl font-semibold text-foreground mb-3">
+        Security & Privacy
+      </h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Your files are processed entirely in your browser. No documents are uploaded 
+        to external servers, and no data is stored. This tool adds metadata protection; 
+        for full AES-256 encryption, professional PDF software like Adobe Acrobat is recommended.
+      </p>
     </section>
   </div>
 );
@@ -151,6 +166,8 @@ const ProtectPDF = () => {
     <ToolLayout
       title="Protect PDF"
       description="Add password protection and set permissions for your PDF documents."
+      seoTitle="Protect PDF with Password – Secure Documents | DocFlow"
+      seoDescription="Add password protection to PDF files online. Set permissions to control printing and copying. Free, browser-based—no uploads, instant security."
       seoContent={<SEOContent />}
     >
       <div className="space-y-6">

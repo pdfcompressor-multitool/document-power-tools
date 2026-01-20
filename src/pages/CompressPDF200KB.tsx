@@ -16,26 +16,30 @@ const SEOContent = () => (
   <div className="mt-12 space-y-8 text-sm">
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Compress PDF Below 200KB for Government Applications
+        Compress PDF to 200KB for Aadhaar and Government Forms
       </h2>
       <p className="text-muted-foreground leading-relaxed">
-        Many government portals require PDF files under 200KB for document uploads. 
+        Many Indian government portals require PDF files under 200KB for document uploads. 
         This tool automatically finds the optimal compression level to meet that requirement 
         while preserving maximum readability. Perfect for Aadhaar card uploads, passport 
         applications, PAN card submissions, and other official document submissions.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Need even smaller files? Try our <a href="#/compress-pdf-100kb" className="text-primary hover:underline">Compress to 100KB</a> tool 
+        for portals with stricter limits. For custom compression, use the <a href="#/pdf-compressor" className="text-primary hover:underline">PDF Compressor</a>.
       </p>
     </section>
     
     <section>
       <h2 className="text-xl font-semibold text-foreground mb-3">
-        Ideal For These Applications
+        Ideal For These Government Applications
       </h2>
       <ul className="text-muted-foreground space-y-2">
-        <li>• Compress PDF for Aadhaar card upload without losing quality</li>
-        <li>• Reduce PDF size for government form submission</li>
-        <li>• PDF compressor for passport, PAN card, and exam forms</li>
-        <li>• Compress PDF below 200KB for online applications</li>
-        <li>• Fast PDF compression for college admission forms</li>
+        <li>• Compress PDF for Aadhaar card upload without quality loss</li>
+        <li>• Reduce PDF size for passport application (MEA portal)</li>
+        <li>• PDF compressor for PAN card and income tax forms</li>
+        <li>• Compress PDF for EPFO, DigiLocker, and UMANG submissions</li>
+        <li>• Fast PDF compression for college admission and exam forms</li>
       </ul>
     </section>
     
@@ -48,6 +52,10 @@ const SEOContent = () => (
         to find the highest quality that still fits under 200KB. For most single-page 
         documents like ID cards and certificates, the result is nearly indistinguishable 
         from the original. Multi-page documents may require lower quality to meet the target.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        <strong>Privacy guaranteed:</strong> All processing happens in your browser. 
+        Your documents are never uploaded to any server.
       </p>
     </section>
   </div>
@@ -160,6 +168,8 @@ const CompressPDF200KB = () => {
     <ToolLayout
       title="Compress PDF to 200KB"
       description="Automatically compress your PDF to approximately 200KB for government portals and form submissions."
+      seoTitle="Compress PDF to 200KB – Aadhaar & Government Forms"
+      seoDescription="Compress PDF for Aadhaar, passport, PAN card, and government form uploads. Free 200KB target compression—100% browser-based, no uploads."
       seoContent={<SEOContent />}
     >
       <div className="space-y-6">

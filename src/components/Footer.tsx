@@ -46,7 +46,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Converters</h4>
+            <h4 className="font-semibold text-foreground mb-4">Converters & More</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/jpg-to-pdf" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -59,13 +59,18 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/word-to-pdf" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Word to PDF
+                <Link to="/image-compressor" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Image Compressor
                 </Link>
               </li>
               <li>
-                <Link to="/pdf-to-word" className="text-muted-foreground hover:text-foreground transition-colors">
-                  PDF to Word
+                <Link to="/sign-pdf" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Sign PDF
+                </Link>
+              </li>
+              <li>
+                <Link to="/protect-pdf" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Protect PDF
                 </Link>
               </li>
             </ul>

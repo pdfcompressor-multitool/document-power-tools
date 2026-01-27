@@ -164,6 +164,18 @@ const CompressPDF100KB = () => {
     return doc.output('blob');
   };
 
+  const howToSteps = [
+    { name: "Upload your PDF", text: "Click the upload area or drag and drop your PDF file (max 50MB)." },
+    { name: "Automatic compression", text: "The tool automatically applies maximum compression to reach 100KB target." },
+    { name: "Download result", text: "Your compressed PDF will download automatically. Check if it meets your size requirement." },
+  ];
+
+  const faqItems = [
+    { question: "Why can't I get my PDF below 100KB?", answer: "100KB is very restrictive. Multi-page PDFs or image-heavy documents may not reach this target. Try using single-page, text-based documents for best results." },
+    { question: "Will the quality be good enough?", answer: "For text documents like forms and certificates, the quality remains readable. For photo-heavy documents, some quality loss is expected." },
+    { question: "What forms require 100KB?", answer: "Many competitive exam portals (UPSC, SSC, IBPS), scholarship applications, and some government job portals require PDFs under 100KB." },
+  ];
+
   return (
     <ToolLayout
       title="Compress PDF to 100KB"
@@ -171,6 +183,8 @@ const CompressPDF100KB = () => {
       seoTitle="Compress PDF to 100KB Free – Exam Forms & Applications"
       seoDescription="Compress PDF below 100KB for UPSC, SSC, scholarship forms, and strict upload limits. Free browser-based tool—no uploads, instant download."
       seoContent={<SEOContent />}
+      howToSteps={howToSteps}
+      faqItems={faqItems}
     >
       <div className="space-y-6">
         <FileUpload

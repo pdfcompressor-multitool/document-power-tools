@@ -136,6 +136,19 @@ const PDFCompressor = () => {
     setSelectedFile(file);
   };
 
+  const howToSteps = [
+    { name: "Upload your PDF", text: "Click the upload area or drag and drop your PDF file. Maximum file size is 50MB." },
+    { name: "Adjust quality", text: "Use the slider to set compression level. Lower quality means smaller file size." },
+    { name: "Compress", text: "Click 'Compress PDF' to process your file locally in your browser." },
+    { name: "Download", text: "Your compressed PDF will automatically download when ready." },
+  ];
+
+  const faqItems = [
+    { question: "Is my PDF uploaded to a server?", answer: "No. All processing happens entirely in your browser. Your files never leave your device, ensuring complete privacy." },
+    { question: "What quality setting should I use?", answer: "For text documents, 50-60% quality usually works well. For documents with images, try 70-80% for good balance between size and quality." },
+    { question: "How small can I compress my PDF?", answer: "The compression ratio depends on your original PDF. For strict size limits, try our Compress to 100KB or 200KB tools." },
+  ];
+
   return (
     <ToolLayout
       title="PDF Compressor"
@@ -143,6 +156,8 @@ const PDFCompressor = () => {
       seoTitle="Compress PDF Online Free – Reduce File Size | DocFlow"
       seoDescription="Free PDF compressor for job applications, government forms, and email attachments. Compress PDF files securely in your browser—no uploads, no account required."
       seoContent={<SEOContent />}
+      howToSteps={howToSteps}
+      faqItems={faqItems}
     >
       <div className="space-y-6">
         <FileUpload

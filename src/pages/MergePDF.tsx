@@ -106,6 +106,19 @@ const MergePDF = () => {
     }
   };
 
+  const howToSteps = [
+    { name: "Upload PDFs", text: "Click the upload area to select multiple PDF files you want to merge." },
+    { name: "Arrange order", text: "Review the file list. Files will be merged in the order shown." },
+    { name: "Merge", text: "Click 'Merge PDFs' to combine all files into a single document." },
+    { name: "Download", text: "Your merged PDF will download automatically." },
+  ];
+
+  const faqItems = [
+    { question: "How many PDFs can I merge at once?", answer: "There's no strict limit, but very large combined documents may take longer to process. For best results, keep the total under 100MB." },
+    { question: "Will the merged PDF maintain quality?", answer: "Yes, merging doesn't compress or alter the original pages—they're combined exactly as they are." },
+    { question: "Can I reorder the PDFs before merging?", answer: "Currently, files are merged in the order you upload them. Upload files in your desired order for best results." },
+  ];
+
   return (
     <ToolLayout
       title="Merge PDF"
@@ -113,6 +126,8 @@ const MergePDF = () => {
       seoTitle="Merge PDF Files Online Free – Combine PDFs | DocFlow"
       seoDescription="Combine multiple PDF files into one document. Free browser-based tool—no uploads, no account required. Perfect for document packages."
       seoContent={<SEOContent />}
+      howToSteps={howToSteps}
+      faqItems={faqItems}
     >
       <div className="space-y-6">
         <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary/50 transition-colors bg-muted/30">

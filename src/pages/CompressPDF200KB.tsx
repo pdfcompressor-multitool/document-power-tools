@@ -164,6 +164,18 @@ const CompressPDF200KB = () => {
     return doc.output('blob');
   };
 
+  const howToSteps = [
+    { name: "Upload your PDF", text: "Click the upload area or drag and drop your PDF file (max 50MB)." },
+    { name: "Automatic optimization", text: "The tool automatically finds the best quality that fits under 200KB." },
+    { name: "Download result", text: "Your compressed PDF will download automatically, ready for upload to government portals." },
+  ];
+
+  const faqItems = [
+    { question: "Which government forms need 200KB PDFs?", answer: "Aadhaar card uploads, passport applications (MEA portal), PAN card submissions, EPFO forms, and many DigiLocker uploads require PDFs under 200KB." },
+    { question: "What if my PDF can't reach 200KB?", answer: "Very large or multi-page documents may not reach this target. The tool will compress as much as possible and show you the final size." },
+    { question: "Is the quality good enough for official use?", answer: "Yes, the algorithm finds the highest quality that still fits under 200KB, ensuring documents remain readable for official purposes." },
+  ];
+
   return (
     <ToolLayout
       title="Compress PDF to 200KB"
@@ -171,6 +183,8 @@ const CompressPDF200KB = () => {
       seoTitle="Compress PDF to 200KB – Aadhaar & Government Forms"
       seoDescription="Compress PDF for Aadhaar, passport, PAN card, and government form uploads. Free 200KB target compression—100% browser-based, no uploads."
       seoContent={<SEOContent />}
+      howToSteps={howToSteps}
+      faqItems={faqItems}
     >
       <div className="space-y-6">
         <FileUpload

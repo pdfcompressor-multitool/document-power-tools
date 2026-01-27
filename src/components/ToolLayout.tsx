@@ -1,10 +1,21 @@
 import { ReactNode } from "react";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Button } from "./ui/button";
 import { useSEO } from "@/hooks/useSEO";
+import StructuredData from "./StructuredData";
+
+interface HowToStep {
+  name: string;
+  text: string;
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
 
 interface ToolLayoutProps {
   title: string;
@@ -13,6 +24,8 @@ interface ToolLayoutProps {
   seoDescription?: string;
   seoContent?: ReactNode;
   children: ReactNode;
+  howToSteps?: HowToStep[];
+  faqItems?: FAQItem[];
 }
 
 const ToolLayout = ({ 
@@ -21,19 +34,63 @@ const ToolLayout = ({
   seoTitle, 
   seoDescription, 
   seoContent, 
-  children 
+  children,
+  howToSteps,
+  faqItems,
 }: ToolLayoutProps) => {
+  const location = useLocation();
   const pageTitle = seoTitle || `${title} – Free Online Tool | DocFlow`;
   const pageDescription = seoDescription || description;
 
   useSEO({ title: pageTitle, description: pageDescription });
 
+  // Build breadcrumbs
+  const breadcrumbs = [
+    { name: "Home", url: "/#/" },
+    { name: title, url: `/#${location.pathname}` },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       
+      {/* Structured Data */}
+      <StructuredData
+        type="BreadcrumbList"
+        breadcrumbs={breadcrumbs}
+      />
+      {howToSteps && howToSteps.length > 0 && (
+        <StructuredData
+          type="HowTo"
+          name={`How to ${title}`}
+          description={pageDescription}
+          howToSteps={howToSteps}
+        />
+      )}
+      {faqItems && faqItems.length > 0 && (
+        <StructuredData
+          type="FAQPage"
+          faqItems={faqItems}
+        />
+      )}
+      
       <main className="flex-1 py-12 bg-background">
         <div className="container mx-auto px-6 max-w-4xl">
+          {/* Breadcrumb navigation for accessibility */}
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex items-center gap-2 text-sm text-muted-foreground">
+              <li>
+                <Link to="/" className="hover:text-foreground transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <span className="text-foreground font-medium">{title}</span>
+              </li>
+            </ol>
+          </nav>
+          
           <Button
             asChild
             variant="ghost"
@@ -59,9 +116,9 @@ const ToolLayout = ({
           </div>
           
           {seoContent && (
-            <div className="prose prose-invert max-w-none">
+            <article className="prose prose-invert max-w-none">
               {seoContent}
-            </div>
+            </article>
           )}
         </div>
       </main>

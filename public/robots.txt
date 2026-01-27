@@ -14,5 +14,5 @@ Allow: /
 User-agent: *
 Allow: /
 
-# Sitemap location - update with your actual domain
-Sitemap: https://yourusername.github.io/docflow/sitemap.xml
+# Sitemap location
+Sitemap: https://file-artisan-kit.lovable.app/sitemap.xml

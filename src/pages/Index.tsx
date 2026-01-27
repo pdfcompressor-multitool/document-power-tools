@@ -17,8 +17,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ToolCard from "@/components/ToolCard";
 import { Button } from "@/components/ui/button";
+import { useSEO } from "@/hooks/useSEO";
 
 const Index = () => {
+  useSEO({
+    title: "DocFlow – Free & Secure PDF Tools for Government Forms",
+    description: "Compress PDF to 100KB or 200KB for Aadhaar, passport, and job applications. Sign, protect, merge, and convert PDFs—100% browser-based, no uploads, no account required."
+  });
+
   const tools = [
     {
       title: "PDF Compressor",
@@ -128,12 +134,12 @@ const Index = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative bg-card border-b border-border overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-50" />
+      <section className="relative bg-card border-b border-border overflow-hidden" aria-labelledby="hero-heading">
+        <div className="absolute inset-0 bg-grid-pattern opacity-50" aria-hidden="true" />
 
         <div className="container mx-auto px-6 py-20 md:py-28 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
+            <h1 id="hero-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
               Free & Secure PDF Tools for{" "}
               <span className="text-gradient">Government Forms & Job Applications</span>
             </h1>
@@ -148,19 +154,20 @@ const Index = () => {
               size="lg"
               className="bg-primary hover:bg-primary-dark text-primary-foreground font-semibold px-8"
             >
-              <a href="#/#tools">Browse All Tools</a>
+              <a href="#tools">Browse All Tools</a>
             </Button>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-16 bg-background">
+      <section id="features" className="py-16 bg-background" aria-labelledby="features-heading">
         <div className="container mx-auto px-6">
+          <h2 id="features-heading" className="sr-only">Key Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature) => (
-              <div key={feature.title} className="text-center">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <article key={feature.title} className="text-center">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4" aria-hidden="true">
                   <feature.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">
@@ -169,17 +176,17 @@ const Index = () => {
                 <p className="text-muted-foreground text-sm">
                   {feature.description}
                 </p>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
       {/* Tools Grid Section */}
-      <main id="tools" className="flex-1 py-16 bg-background">
+      <main id="tools" className="flex-1 py-16 bg-background" aria-labelledby="tools-heading">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+          <header className="text-center mb-12">
+            <h2 id="tools-heading" className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
               Professional Document Tools
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -187,9 +194,9 @@ const Index = () => {
               documents. Perfect for job applications, government forms, and
               everyday document tasks.
             </p>
-          </div>
+          </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
             {tools.map((tool) => (
               <ToolCard
                 key={tool.link}
@@ -205,11 +212,11 @@ const Index = () => {
       </main>
 
       {/* Security Section */}
-      <section id="security" className="py-16 bg-card border-t border-border">
+      <section id="security" className="py-16 bg-card border-t border-border" aria-labelledby="security-heading">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <Shield className="w-12 h-12 text-primary mx-auto mb-6" />
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+            <Shield className="w-12 h-12 text-primary mx-auto mb-6" aria-hidden="true" />
+            <h2 id="security-heading" className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
               Your Files Stay on Your Device
             </h2>
             <p className="text-muted-foreground leading-relaxed">

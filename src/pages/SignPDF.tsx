@@ -331,6 +331,19 @@ const SignPDF = () => {
     }
   };
 
+  const howToSteps = [
+    { name: "Upload your PDF", text: "Click the upload area to select the PDF document you want to sign." },
+    { name: "Create your signature", text: "Draw your signature using your mouse or touchpad, or upload a signature image." },
+    { name: "Place the signature", text: "Click on the PDF preview to place your signature. Drag to reposition and resize as needed." },
+    { name: "Download signed PDF", text: "Click 'Download Signed PDF' to save your document with the embedded signature." },
+  ];
+
+  const faqItems = [
+    { question: "Is this a legally binding signature?", answer: "This tool adds a visual representation of your signature to the PDF. For legally binding e-signatures, consult your jurisdiction's requirements or use certified e-signature services." },
+    { question: "Can I sign multiple pages?", answer: "Currently, you can place one signature per page. Navigate between pages to sign each one individually." },
+    { question: "What image formats can I upload?", answer: "You can upload PNG, JPG, or other common image formats. PNG with transparent background works best for signatures." },
+  ];
+
   return (
     <ToolLayout
       title="Sign PDF Online"
@@ -338,6 +351,8 @@ const SignPDF = () => {
       seoTitle="Sign PDF Online Free – Add Signature Instantly | DocFlow"
       seoDescription="Sign PDF documents online for free. Draw or upload your signature, place it anywhere, and download instantly. 100% private—no uploads, no account."
       seoContent={<SEOContent />}
+      howToSteps={howToSteps}
+      faqItems={faqItems}
     >
       <div className="space-y-6">
         {!pdfFile ? (
